@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MarketGo</string>
+    <string name="hello_world">Hello world!</string>
+	<string name="speech_to_text_info">Text</string>
+	<string name="open">Open Drawer</string>
+	<string name="close">Close Drawer</string>
+    <string name="crash_now">Crash Now</string>
+    <string name="welcome_to_the_android_market">Welcome To The Market GO</string>
+    <string name="android_market">Market GO</string>
+    <string name="continue_as_guest">Continue As Guest</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="login_to_account">LogIn To Account</string>
+    <string name="current_balance">Current Balance:</string>
+    <string name="add_money">Add Money(+)</string>
+    <string name="android">Android</string>
+    <string name="enter_item_name">Enter Item Name</string>
+    <string name="enter_item_price">Enter Item Price</string>
+    <string name="enter_stock_available">Enter Stock Available</string>
+    <string name="add">Add</string>
+    <integer name="activity_transition_duration">500</integer>
+	
+	
+</resources>

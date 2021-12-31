@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	package="com.Sujal_Industries.AndroidMarket">
+	
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/market"
+        android:label="@string/app_name"
+        android:theme="@style/AppBaseTheme"
+		android:name="com.Sujal_Industries.AndroidMarket.ApplicationClass"
+		tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity
+            android:name=".Welcome"
+            android:label="@string/app_name"
+			android:screenOrientation="portrait"
+			android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+		<activity android:name=".MainActivity"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".SignUp"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".SignIn"
+			android:theme="@style/SignInTheme"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".Market"
+			android:theme="@style/MarketTheme"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".AddItem"
+			android:theme="@style/AddItem"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".ItemData"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".Cart123"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".Passbook"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".AddMoney"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".Settings"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".OrdersList"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".OrderData"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".Animation"
+			android:screenOrientation="portrait"/>
+		<activity android:name=".DrawerActivity"
+			android:screenOrientation="portrait"/>
+	    <service android:name=".HelperService"
+			      android:exported="false"/>
+		<meta-data android:name="DATABASE" android:value="SK_Android_Market_7899*###.db" />
+		<meta-data android:name="VERSION" android:value="1" />
+		<meta-data android:name="QUERY_LOG" android:value="true" />
+		<meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.Sujal_Industries.AndroidMarket" />
+    </application>
+</manifest>

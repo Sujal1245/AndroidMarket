@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:gravity="center_horizontal"
+	android:background="#A4C800">
+
+	<include
+		layout="@layout/app_bar_main"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<com.google.android.material.textfield.TextInputLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:paddingTop="10dp">
+
+		<EditText
+			android:layout_height="wrap_content"
+			android:inputType="text"
+			android:layout_width="wrap_content"
+			android:ems="10"
+			android:id="@+id/additemEditText1"
+			android:layout_margin="10dp"
+			android:hint="@string/enter_item_name"
+			android:gravity="center"/>
+
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<com.google.android.material.textfield.TextInputLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal">
+
+		<EditText
+			android:layout_height="wrap_content"
+			android:inputType="number"
+			android:layout_width="wrap_content"
+			android:ems="10"
+			android:id="@+id/additemEditText2"
+			android:hint="@string/enter_item_price"
+			android:gravity="center"/>
+
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<com.google.android.material.textfield.TextInputLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal">
+
+		<EditText
+			android:layout_height="wrap_content"
+			android:inputType="number"
+			android:layout_width="wrap_content"
+			android:ems="10"
+			android:id="@+id/additemEditText3"
+			android:layout_margin="10dp"
+			android:hint="@string/enter_stock_available"
+			android:gravity="center"/>
+
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="@string/add"
+		android:id="@+id/additemButton1"
+		android:background="#00DDA3"
+		android:layout_margin="10dp"/>
+
+</LinearLayout>
+

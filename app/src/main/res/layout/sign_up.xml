@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:gravity="center_horizontal"
+	android:background="#95C2D1">
+
+	<include
+		layout="@layout/app_bar_main"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+	<EditText
+		android:layout_height="wrap_content"
+		android:inputType="textPersonName"
+		android:layout_width="wrap_content"
+		android:ems="10"
+		android:layout_margin="10dp"
+		android:hint="Enter Your Name Here"
+		android:gravity="center"
+		android:id="@+id/signupName"
+		android:background="#A7DF7E"
+		android:textColorHint="#FFFFFF"
+		android:padding="10dp"/>
+	
+	<EditText
+		android:layout_height="wrap_content"
+		android:inputType="textPersonName"
+		android:layout_width="wrap_content"
+		android:ems="10"
+		android:gravity="center"
+		android:hint="Enter The User Name"
+		android:id="@+id/signupUserName"
+		android:background="#D5D975"
+		android:textColorHint="#FFFFFF"
+		android:padding="10dp"/>
+
+	<EditText
+		android:layout_height="wrap_content"
+		android:inputType="textPassword"
+		android:layout_width="wrap_content"
+		android:layout_margin="10dp"
+		android:hint="Enter The Password"
+		android:id="@+id/signupPassword"
+		android:gravity="center"
+		android:ems="10"
+		android:background="#E2BB5A"
+		android:textColorHint="#FFFFFF"
+		android:padding="10dp"/>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="Create Account"
+		android:id="@+id/signupButton1"
+		android:background="#6BD6E6"
+		android:textColor="#FFFFFF"
+		android:padding="10dp"/>
+
+</LinearLayout>
+

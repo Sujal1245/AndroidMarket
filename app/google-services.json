@@ -1,0 +1,43 @@
+{
+  "project_info": {
+    "project_number": "889210273723",
+    "firebase_url": "https://androidmarket-656d0.firebaseio.com",
+    "project_id": "androidmarket-656d0",
+    "storage_bucket": "androidmarket-656d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889210273723:android:c1dfbda7003391ce",
+        "android_client_info": {
+          "package_name": "com.Sujal_Industries.AndroidMarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889210273723-mqlpnhf6646m8pggrne1bfl4cdaskokh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcat2kcdqIxDDwc5sk5V0tEYWSswh92Dk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      },
+      "admob_app_id": "ca-app-pub-7580032954648603~6692238650"
+    }
+  ],
+  "configuration_version": "1"
+}

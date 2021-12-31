@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:id="@+id/mainRelativeLayout1">
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:gravity="center_horizontal"
+		android:background="#95C2D1">
+
+		<include
+			layout="@layout/app_bar_main"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:text="@string/login_to_account"
+			android:layout_margin="5dp"
+			android:background="#89E341"
+			android:textColor="#FFFFFF"
+			android:id="@+id/mainButton1"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:text="@string/create_new_account"
+			android:layout_margin="5dp"
+			android:background="#44A9C6"
+			android:textColor="#FFFFFF"
+			android:id="@+id/mainButton2"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:text="@string/continue_as_guest"
+			android:layout_margin="5dp"
+			android:background="#C45C5F"
+			android:textColor="#FFFFFF"
+			android:id="@+id/mainButton3"/>
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/android1"
+			android:paddingTop="65dp"
+			android:contentDescription="@string/android" />
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="@string/android_market"
+			android:textSize="30sp"
+			android:textColor="#A5E764"/>
+
+	</LinearLayout>
+
+</RelativeLayout>
+

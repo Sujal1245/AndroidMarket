@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:gravity="center_horizontal"
+	android:background="@drawable/background3">
+
+	<include
+		layout="@layout/app_bar_main"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+	<androidx.cardview.widget.CardView
+		android:id="@+id/itemdataCardView1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="15dp">
+
+    <LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:orientation="vertical"
+		android:gravity="center_horizontal"
+		android:padding="10dp">
+		<TextView
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:layout_width="wrap_content"
+			android:text="Large Text"
+			android:textColor="#2FA143"
+			android:layout_margin="10dp"
+			android:id="@+id/itemdataTextView1"
+			android:background="#FFFFFF"
+			android:padding="10dp"/>
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:layout_width="wrap_content"
+			android:text="Medium Text"
+			android:textColor="#EF2A1D"
+			android:id="@+id/itemdataTextView2"
+			android:background="#FFFFFF"
+			android:padding="10dp"/>
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_width="wrap_content"
+			android:text="Medium Text"
+			android:textColor="#78B6BD"
+			android:layout_margin="10dp"
+			android:id="@+id/itemdataTextView3"
+			android:background="#FFFFFF"
+			android:padding="10dp"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="Delete"
+			android:id="@+id/itemdataButton2"
+			android:background="#FF0F00"
+			android:textColor="#FFFFFF"
+			android:layout_margin="10dp"
+			android:padding="10dp"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="Add To Cart"
+			android:id="@+id/itemdataButton1"
+			android:visibility="gone"
+			android:background="#00AF2B"
+			android:textColor="#FFFFFF"
+			android:padding="10dp"/>
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_width="wrap_content"
+			android:text="Medium Text"
+			android:padding="10dp"
+			android:background="#FFFFFF"
+			android:id="@+id/itemdataTextView4"
+			android:visibility="gone"
+			android:textColor="#525252"/>
+	</LinearLayout>
+	</androidx.cardview.widget.CardView>
+
+</LinearLayout>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="AppBaseTheme" parent="Theme.AppCompat">
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+	</style>
+	<style name="MyDialogTheme" parent="ThemeOverlay.Material3.Dialog.Alert">
+		<item name="colorAccent">#009CFF</item>
+	</style>
+	<style name="SignInTheme" parent="@style/AppBaseTheme">
+		<item name="colorPrimary">#FF6000</item>
+		<item name="colorPrimaryDark">#FF4500</item>
+	</style>
+	<style name="MarketTheme" parent="@style/AppBaseTheme">
+		<item name="colorPrimary">#9900FF</item>
+		<item name="colorPrimaryDark">#8500DF</item>
+	</style>
+	<style name="AddItem" parent="@style/AppBaseTheme">
+		<item name="colorPrimary">#009ED3</item>
+		<item name="colorPrimaryDark">#008ABE</item>
+	</style>
+</resources>
