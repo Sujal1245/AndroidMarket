@@ -48,24 +48,21 @@ public class Market extends DrawerActivity {
         for (int x = 0; x < count; x++) {
             al.add(items.get(x).getName());
         }
-        ArrayAdapter aa = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_list, al);
+        ArrayAdapter aa = new ArrayAdapter<>(getApplicationContext(), R.layout.custom_list, al);
         lv.setAdapter(aa);
-        lv.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> p1, View p2, int p3, long p4) {
-                // TODO: Implement this method
-                Intent i = new Intent(getApplicationContext(), ItemData.class);
-                items = Items.find(Items.class, "user = ?", user);
-                Items item = items.get(p3);
-                long id = item.getId();
-                i.putExtra("Item", item);
-                i.putExtra("User", user);
-                i.putExtra("Id", id);
-                i.putExtra("Flag", true);
-                i.putExtra("Signal", 1);
-                startActivity(i);
-                overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-            }
+        lv.setOnItemClickListener((p1, p2, p3, p4) -> {
+            // TODO: Implement this method
+            Intent i1 = new Intent(getApplicationContext(), ItemData.class);
+            items = Items.find(Items.class, "user = ?", user);
+            Items item = items.get(p3);
+            long id = item.getId();
+            i1.putExtra("Item", item);
+            i1.putExtra("User", user);
+            i1.putExtra("Id", id);
+            i1.putExtra("Flag", true);
+            i1.putExtra("Signal", 1);
+            startActivity(i1);
+            overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
         });
         //Floating Action Button Section
         final ImageView icon = new ImageView(this); // Create an icon

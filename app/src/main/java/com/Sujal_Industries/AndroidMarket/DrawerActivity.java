@@ -115,14 +115,11 @@ public class DrawerActivity extends AppCompatActivity {
         Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 100, 100, true));
         getSupportActionBar().setIcon(d);
         navigation.setCheckedItem(R.id.nav_market);
-        imgProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                // TODO: Implement this method
-                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-                photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
-            }
+        imgProfile.setOnClickListener(p1 -> {
+            // TODO: Implement this method
+            Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+            photoPickerIntent.setType("image/*");
+            startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
         });
         if (loadImageFromStorage("/sdcard/ImgProfile/") != null) {
             Glide.with(this).load(loadImageFromStorage("/sdcard/ImgProfile/")).apply(RequestOptions.circleCropTransform().diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)).into(imgProfile);

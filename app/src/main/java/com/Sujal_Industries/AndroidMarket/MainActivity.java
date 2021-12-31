@@ -58,23 +58,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         b2 = findViewById(R.id.mainButton2);
-        b2.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View p1) {
-                // TODO: Implement this method
-                Intent i = new Intent(getApplicationContext(), SignUp.class);
-                startActivityForResult(i, STATIC_INTEGER_VALUE);
-                overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-            }
+        b2.setOnClickListener(p1 -> {
+            // TODO: Implement this method
+            Intent i = new Intent(getApplicationContext(), SignUp.class);
+            startActivityForResult(i, STATIC_INTEGER_VALUE);
+            overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
         });
         b3 = findViewById(R.id.mainButton3);
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                // TODO: Implement this method
-                Toast.makeText(getApplicationContext(),"Sorry but this section is under construction!",Toast.LENGTH_SHORT).show();
-            }
+        b3.setOnClickListener(p1 -> {
+            // TODO: Implement this method
+            Toast.makeText(getApplicationContext(),"Sorry but this section is under construction!",Toast.LENGTH_SHORT).show();
         });
         int PERMISSION_ALL = 1;
         String[] PERMISSIONS = {
