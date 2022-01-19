@@ -61,7 +61,7 @@
 	    <service android:name=".HelperService"
 			      android:exported="false"/>
 		<meta-data android:name="DATABASE" android:value="SK_Android_Market_7899*###.db" />
-		<meta-data android:name="VERSION" android:value="1" />
+		<meta-data android:name="VERSION" android:value="2" />
 		<meta-data android:name="QUERY_LOG" android:value="true" />
 		<meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.Sujal_Industries.AndroidMarket" />
     </application>

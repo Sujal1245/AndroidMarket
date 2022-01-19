@@ -15,3 +15,8 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-keep public class * extends com.orm.SugarRecord {
+  public protected *;
+}
+-keep class com.orm.** { *; }

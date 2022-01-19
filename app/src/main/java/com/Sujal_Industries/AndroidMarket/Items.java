@@ -1,11 +1,14 @@
 package com.Sujal_Industries.AndroidMarket;
 
+import androidx.annotation.Keep;
+
 import com.orm.*;
 
 import java.io.*;
 
 import com.google.firebase.database.*;
 
+@Keep
 @IgnoreExtraProperties
 public class Items extends SugarRecord implements Serializable {
     String name;

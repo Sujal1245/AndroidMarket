@@ -1,13 +1,8 @@
 package com.Sujal_Industries.AndroidMarket;
 
-import android.app.*;
-import android.content.*;
-import android.os.*;
-import android.widget.*;
-
-import java.util.*;
-
-import android.util.*;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 

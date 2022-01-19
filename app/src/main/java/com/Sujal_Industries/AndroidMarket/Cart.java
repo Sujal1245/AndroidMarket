@@ -1,9 +1,12 @@
 package com.Sujal_Industries.AndroidMarket;
 
+import androidx.annotation.Keep;
+
 import com.orm.*;
 
 import java.io.*;
 
+@Keep
 public class Cart extends SugarRecord implements Serializable {
     long item;
     String user;

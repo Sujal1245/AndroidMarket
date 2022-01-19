@@ -1,7 +1,10 @@
 package com.Sujal_Industries.AndroidMarket;
 
+import androidx.annotation.Keep;
+
 import com.orm.*;
 
+@Keep
 public class Orders extends SugarRecord {
     String user;
     String details;

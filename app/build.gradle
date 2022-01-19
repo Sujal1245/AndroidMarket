@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
     compileSdkVersion 32
@@ -9,14 +8,15 @@ android {
         applicationId "com.Sujal_Industries.AndroidMarket"
         minSdkVersion 19
         targetSdkVersion 32
-        versionCode 20
-        versionName "2.9"
+        versionCode 21
+        versionName "3.0"
         multiDexEnabled true
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -30,15 +30,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:20.0.0'
     implementation 'com.google.firebase:firebase-database:20.0.3'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0-alpha01'
     implementation 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
     implementation 'com.github.satyan:sugar:1.5'
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    implementation 'com.google.firebase:firebase-core:20.0.2'
-    implementation 'androidx.browser:browser:1.4.0'
-    implementation 'com.google.firebase:firebase-perf:20.0.4'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
     implementation 'androidx.multidex:multidex:2.0.1'
 }
 

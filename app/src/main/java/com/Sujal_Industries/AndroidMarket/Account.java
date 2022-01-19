@@ -1,8 +1,11 @@
 package com.Sujal_Industries.AndroidMarket;
 
+import androidx.annotation.Keep;
+
 import com.orm.*;
 import com.google.firebase.database.*;
 
+@Keep
 @IgnoreExtraProperties
 public class Account extends SugarRecord {
     String name;
