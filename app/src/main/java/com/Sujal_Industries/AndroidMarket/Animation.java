@@ -20,22 +20,12 @@ public class Animation extends AppCompatActivity {
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
         Handler handle = new Handler();
-        handle.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // TODO: Implement this method
-                img.animate().rotation(360f).translationY(-getResources().getDimension(R.dimen.anim_400)).translationX(getResources().getDimension(R.dimen.anim_100)).setDuration(2000);
-                Handler handle2 = new Handler();
-                handle2.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // TODO: Implement this method
-                        finish();
-                    }
-
-                }, 2100);
-            }
-
+        handle.postDelayed(() -> {
+            // TODO: Implement this method
+            img.animate().rotation(360f).translationY(-getResources().getDimension(R.dimen.anim_400)).translationX(getResources().getDimension(R.dimen.anim_100)).setDuration(2000);
+            Handler handle2 = new Handler();
+            // TODO: Implement this method
+            handle2.postDelayed(this::finish, 2100);
         }, 1500);
     }
 }

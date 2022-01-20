@@ -18,13 +18,10 @@ public class Welcome extends AppCompatActivity {
         tv = findViewById(R.id.welcomeTextView1);
         tv.setTextColor(Color.rgb(34, 139, 34));
         final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                finish();
-                startActivity(i);
-            }
+        handler.postDelayed(() -> {
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            finish();
+            startActivity(i);
         }, 3000);
     }
 }

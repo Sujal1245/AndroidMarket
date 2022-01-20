@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 
 public class AddItem extends AppCompatActivity {
@@ -26,10 +27,16 @@ public class AddItem extends AppCompatActivity {
         setContentView(R.layout.add_item);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        Drawable dr = getResources().getDrawable(R.drawable.item);
-        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+        Drawable dr = AppCompatResources.getDrawable(this, R.drawable.item);
+        Bitmap bitmap = null;
+        if (dr != null) {
+            bitmap = ((BitmapDrawable) dr).getBitmap();
+        }
         Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 100, 100, true));
         getSupportActionBar().setIcon(d);
         Intent i = getIntent();
@@ -58,10 +65,11 @@ public class AddItem extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
+            case android.R.id.home -> {
                 System.out.println("Back Button Pressed!");
                 onBackPressed();
                 return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

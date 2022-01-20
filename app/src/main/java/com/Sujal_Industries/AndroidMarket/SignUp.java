@@ -1,21 +1,28 @@
 package com.Sujal_Industries.AndroidMarket;
 
-import android.app.*;
-import android.content.*;
-import android.net.*;
-import android.os.*;
-import androidx.core.app.*;
-import androidx.appcompat.app.*;
-import androidx.appcompat.widget.*;
-import android.view.*;
-import android.widget.*;
+import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import com.google.firebase.database.*;
-
-import java.util.*;
-
-import androidx.core.app.NotificationCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
 
 public class SignUp extends AppCompatActivity {
     Button create;
@@ -33,39 +40,39 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.sign_up);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
         create = findViewById(R.id.signupButton1);
         name = findViewById(R.id.signupName);
         user = findViewById(R.id.signupUserName);
         pass = findViewById(R.id.signupPassword);
-        create.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                // TODO: Implement this method
-                String name1 = name.getText().toString();
-                String user1 = user.getText().toString();
-                String pass1 = pass.getText().toString();
-                List<Account> accounts = Account.find(Account.class, "user = ?", user1);
-                if (accounts.size() == 0) {
-                    Account account = new Account(name1, user1, pass1, 1000);
-                    account.save();
-                    if (isOnline()) {
-                        uRef = userRef.child(user1);
-                        uRef.setValue(account);
-                    } else {
-                        Intent i = new Intent(getApplicationContext(), HelperService.class);
-                        i.putExtra("User", user1);
-                        i.putExtra("Done", false);
-                        startService(i);
-                    }
-                    createNotification("Bonus Recieved!", name1);
-                    Intent resultIntent = new Intent();
-                    setResult(Activity.RESULT_OK, resultIntent);
-                    finish();
+        create.setOnClickListener(p1 -> {
+            // TODO: Implement this method
+            String name1 = name.getText().toString();
+            String user1 = user.getText().toString();
+            String pass1 = pass.getText().toString();
+            List<Account> accounts = Account.find(Account.class, "user = ?", user1);
+            if (accounts.size() == 0) {
+                Account account = new Account(name1, user1, pass1, 1000);
+                account.save();
+                if (isOnline()) {
+                    uRef = userRef.child(user1);
+                    uRef.setValue(account);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Account with this user name already exists!", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getApplicationContext(), HelperService.class);
+                    i.putExtra("User", user1);
+                    i.putExtra("Done", false);
+                    startService(i);
                 }
+                createNotification("Bonus Received!", name1);
+                Intent resultIntent = new Intent();
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "Account with this user name already exists!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -87,7 +94,7 @@ public class SignUp extends AppCompatActivity {
                     .setPriority(NotificationManager.IMPORTANCE_MAX);
             notificationManager.notify(0, noti.build());
         } else {
-            NotificationCompat.Builder noti = new NotificationCompat.Builder(getApplicationContext())
+            NotificationCompat.Builder noti = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                     .setContentTitle(title)
                     .setContentText("---FOR " + name + ".---")
                     .setSmallIcon(R.drawable.android1)
@@ -102,10 +109,11 @@ public class SignUp extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
+            case android.R.id.home -> {
                 System.out.println("Back Button Pressed!");
                 onBackPressed();
                 return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

@@ -1,14 +1,17 @@
 package com.Sujal_Industries.AndroidMarket;
 
-import android.app.*;
-import android.content.*;
-import android.net.*;
-import android.os.*;
+import android.app.IntentService;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
-import com.google.firebase.database.*;
-import com.orm.query.*;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
-import java.util.*;
+import java.util.List;
 
 public class HelperService extends IntentService {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -34,6 +37,7 @@ public class HelperService extends IntentService {
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         if (isOnline()) {
             if (done) {

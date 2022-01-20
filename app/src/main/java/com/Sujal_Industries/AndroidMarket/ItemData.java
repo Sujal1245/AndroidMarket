@@ -1,20 +1,27 @@
 package com.Sujal_Industries.AndroidMarket;
 
-import android.content.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import android.os.*;
-import androidx.appcompat.app.*;
-import androidx.appcompat.widget.*;
-import android.view.*;
-import android.widget.*;
-
-import com.orm.query.*;
-
-import java.util.*;
-
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
+
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
+import java.util.List;
 
 public class ItemData extends AppCompatActivity {
     TextView tv1, tv2, tv3, tv4;
@@ -37,10 +44,16 @@ public class ItemData extends AppCompatActivity {
         setContentView(R.layout.item_data);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        Drawable dr = getResources().getDrawable(R.drawable.data);
-        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+        Drawable dr = AppCompatResources.getDrawable(this, R.drawable.data);
+        Bitmap bitmap = null;
+        if (dr != null) {
+            bitmap = ((BitmapDrawable) dr).getBitmap();
+        }
         Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 100, 100, true));
         getSupportActionBar().setIcon(d);
         quantity = new EditText(this);
@@ -70,37 +83,28 @@ public class ItemData extends AppCompatActivity {
         tv2.setText("Rs." + price);
         tv3.setText("Stock Available:" + stock);
         b1 = findViewById(R.id.itemdataButton1);
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
+        b1.setOnClickListener(p1 -> {
+            // TODO: Implement this method
+            AlertDialog.Builder builder = new AlertDialog.Builder(ItemData.this, R.style.MyDialogTheme);
+            builder.setTitle("Quantity Required!");
+            builder.setMessage("Please enter the quantity:");
+            builder.setCancelable(false);
+            builder.setView(quantity);
+            builder.setPositiveButton("Done", (p11, p2) -> {
                 // TODO: Implement this method
-                AlertDialog.Builder builder = new AlertDialog.Builder(ItemData.this, R.style.MyDialogTheme);
-                builder.setTitle("Quantity Required!");
-                builder.setMessage("Please enter the quantity:");
-                builder.setCancelable(false);
-                builder.setView(quantity);
-                builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface p1, int p2) {
-                        // TODO: Implement this method
-                        int q = Integer.parseInt(quantity.getText().toString());
-                        long id = i.getLongExtra("Id", 1);
-                        Cart c = new Cart(id, user, q);
-                        c.save();
-                        finish();
-                        Toast.makeText(getApplicationContext(), "Item Successfully Added To Cart!", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface p1, int p2) {
-                        // TODO: Implement this method
-                        finish();
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
-            }
+                int q = Integer.parseInt(quantity.getText().toString());
+                long id = i.getLongExtra("Id", 1);
+                Cart c = new Cart(id, user, q);
+                c.save();
+                finish();
+                Toast.makeText(getApplicationContext(), "Item Successfully Added To Cart!", Toast.LENGTH_SHORT).show();
+            });
+            builder.setNegativeButton("Cancel", (p112, p2) -> {
+                // TODO: Implement this method
+                finish();
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
         });
         b2 = findViewById(R.id.itemdataButton2);
         boolean flag = i.getBooleanExtra("Flag", false);
@@ -112,60 +116,46 @@ public class ItemData extends AppCompatActivity {
             tv4.setVisibility(View.VISIBLE);
             tv4.setText("Quantity:" + q);
         }
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                // TODO: Implement this method
-                int signal = i.getIntExtra("Signal", 0);
-                if (signal == 1) {
-                    Items item123 = Items.findById(Items.class, i.getLongExtra("Id", 0));
-                    item123.delete();
-                    List<Cart> cart7899 = Select.from(Cart.class).where(Condition.prop("item").eq(i.getLongExtra("Id", 0))).list();
-                    if (cart7899.size() != 0) {
-                        Cart cart123 = cart7899.get(0);
-                        cart123.delete();
-                    }
-                    finish();
-                    Toast.makeText(getApplicationContext(), "Item Successfully removed!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Cart c = Cart.findById(Cart.class, i.getLongExtra("CartId", 0));
-                    c.delete();
-                    finish();
-                    Toast.makeText(getApplicationContext(), "Item Successfully removed!", Toast.LENGTH_SHORT).show();
+        b2.setOnClickListener(p1 -> {
+            // TODO: Implement this method
+            int signal = i.getIntExtra("Signal", 0);
+            if (signal == 1) {
+                Items item123 = Items.findById(Items.class, i.getLongExtra("Id", 0));
+                item123.delete();
+                List<Cart> cart7899 = Select.from(Cart.class).where(Condition.prop("item").eq(i.getLongExtra("Id", 0))).list();
+                if (cart7899.size() != 0) {
+                    Cart cart123 = cart7899.get(0);
+                    cart123.delete();
                 }
+            } else {
+                Cart c = Cart.findById(Cart.class, i.getLongExtra("CartId", 0));
+                c.delete();
             }
+            finish();
+            Toast.makeText(getApplicationContext(), "Item Successfully removed!", Toast.LENGTH_SHORT).show();
         });
-        tv4.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View p1) {
+        tv4.setOnLongClickListener(p1 -> {
+            // TODO: Implement this method
+            AlertDialog.Builder builder = new AlertDialog.Builder(ItemData.this, R.style.MyDialogTheme);
+            builder.setTitle("Update Quantity!");
+            builder.setMessage("Enter the new quantity:");
+            builder.setCancelable(false);
+            builder.setView(new_quantity);
+            builder.setPositiveButton("Update", (p113, p2) -> {
                 // TODO: Implement this method
-                AlertDialog.Builder builder = new AlertDialog.Builder(ItemData.this, R.style.MyDialogTheme);
-                builder.setTitle("Update Quantity!");
-                builder.setMessage("Enter the new quantity:");
-                builder.setCancelable(false);
-                builder.setView(new_quantity);
-                builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface p1, int p2) {
-                        // TODO: Implement this method
-                        int num = Integer.parseInt(new_quantity.getText().toString());
-                        Cart c = Cart.findById(Cart.class, i.getLongExtra("CartId", 0));
-                        c.setNumber(num);
-                        c.save();
-                        finish();
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface p1, int p2) {
-                        // TODO: Implement this method
-                        finish();
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
-                return true;
-            }
+                int num = Integer.parseInt(new_quantity.getText().toString());
+                Cart c = Cart.findById(Cart.class, i.getLongExtra("CartId", 0));
+                c.setNumber(num);
+                c.save();
+                finish();
+            });
+            builder.setNegativeButton("Cancel", (p114, p2) -> {
+                // TODO: Implement this method
+                finish();
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+            return true;
         });
     }
 
@@ -173,9 +163,10 @@ public class ItemData extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO: Implement this method
         switch (item.getItemId()) {
-            case android.R.id.home:
+            case android.R.id.home -> {
                 onBackPressed();
                 return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

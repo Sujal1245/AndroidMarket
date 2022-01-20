@@ -1,20 +1,27 @@
 package com.Sujal_Industries.AndroidMarket;
 
-import android.animation.*;
-import android.content.*;
-import android.os.*;
-import androidx.appcompat.widget.*;
-import android.view.*;
-import android.widget.*;
-import android.widget.AdapterView.*;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
-import java.util.*;
+import androidx.appcompat.content.res.AppCompatResources;
 
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.*;
-import androidx.core.app.*;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
+import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
-import com.oguzdev.circularfloatingactionmenu.library.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Market extends DrawerActivity {
     List<Items> items;
@@ -22,7 +29,6 @@ public class Market extends DrawerActivity {
     TextView name;
     TextView tv;
     ListView lv;
-    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +50,11 @@ public class Market extends DrawerActivity {
         tv = findViewById(R.id.marketTextView1);
         tv.setText(count + " items");
         lv = findViewById(R.id.marketListView1);
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<>();
         for (int x = 0; x < count; x++) {
             al.add(items.get(x).getName());
         }
-        ArrayAdapter aa = new ArrayAdapter<>(getApplicationContext(), R.layout.custom_list, al);
+        ArrayAdapter<String> aa = new ArrayAdapter<>(getApplicationContext(), R.layout.custom_list, al);
         lv.setAdapter(aa);
         lv.setOnItemClickListener((p1, p2, p3, p4) -> {
             // TODO: Implement this method
@@ -66,7 +72,7 @@ public class Market extends DrawerActivity {
         });
         //Floating Action Button Section
         final ImageView icon = new ImageView(this); // Create an icon
-        icon.setImageDrawable(getResources().getDrawable(R.drawable.add));
+        icon.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.add));
 
         FloatingActionButton actionButton = new FloatingActionButton.Builder(this)
                 .setContentView(icon)
@@ -84,11 +90,11 @@ public class Market extends DrawerActivity {
         ImageView itemIcon4 = new ImageView(this);
         ImageView itemIcon5 = new ImageView(this);
 
-        itemIcon1.setImageDrawable(getResources().getDrawable(R.drawable.add));
-        itemIcon2.setImageDrawable(getResources().getDrawable(R.drawable.cart));
-        itemIcon3.setImageDrawable(getResources().getDrawable(R.drawable.cashbook));
-        itemIcon4.setImageDrawable(getResources().getDrawable(R.drawable.data));
-        itemIcon5.setImageDrawable(getResources().getDrawable(R.drawable.android1));
+        itemIcon1.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.add));
+        itemIcon2.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.cart));
+        itemIcon3.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.cashbook));
+        itemIcon4.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.data));
+        itemIcon5.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.android1));
 
         SubActionButton button1 = itemBuilder.setContentView(itemIcon1).build();
         SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
@@ -124,52 +130,37 @@ public class Market extends DrawerActivity {
                 animation.start();
             }
         });
-        itemIcon1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                // TODO: Implement this method
-                Intent i = new Intent(getApplicationContext(), AddItem.class);
-                i.putExtra("UserName", user);
-                startActivity(i);
-                overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-            }
+        itemIcon1.setOnClickListener(p1 -> {
+            // TODO: Implement this method
+            Intent i12 = new Intent(getApplicationContext(), AddItem.class);
+            i12.putExtra("UserName", user);
+            startActivity(i12);
+            overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
         });
-        itemIcon2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                // TODO: Implement this method
-                Intent i = new Intent(getApplicationContext(), Cart123.class);
-                i.putExtra("User", user);
-                startActivity(i);
-                overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-            }
+        itemIcon2.setOnClickListener(p1 -> {
+            // TODO: Implement this method
+            Intent i13 = new Intent(getApplicationContext(), Cart123.class);
+            i13.putExtra("User", user);
+            startActivity(i13);
+            overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
         });
-        itemIcon3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                // TODO: Implement this method
-                Intent i = new Intent(getApplicationContext(), Passbook.class);
-                i.putExtra("User", user);
-                startActivity(i);
-                overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-            }
+        itemIcon3.setOnClickListener(p1 -> {
+            // TODO: Implement this method
+            Intent i14 = new Intent(getApplicationContext(), Passbook.class);
+            i14.putExtra("User", user);
+            startActivity(i14);
+            overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
         });
-        itemIcon4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                // TODO: Implement this method
-                Intent i = new Intent(getApplicationContext(), Settings.class);
-                i.putExtra("UserName", user);
-                startActivity(i);
-                overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-            }
+        itemIcon4.setOnClickListener(p1 -> {
+            // TODO: Implement this method
+            Intent i15 = new Intent(getApplicationContext(), Settings.class);
+            i15.putExtra("UserName", user);
+            startActivity(i15);
+            overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
         });
-        itemIcon5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                // TODO: Implement this method
-                finish();
-            }
+        itemIcon5.setOnClickListener(p1 -> {
+            // TODO: Implement this method
+            finish();
         });
     }
 
@@ -182,36 +173,34 @@ public class Market extends DrawerActivity {
         tv = findViewById(R.id.marketTextView1);
         tv.setText(count + " items");
         lv = findViewById(R.id.marketListView1);
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<>();
         for (int x = 0; x < count; x++) {
             al.add(items.get(x).getName());
         }
-        ArrayAdapter aa = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_list, al);
+        ArrayAdapter<String> aa = new ArrayAdapter<>(getApplicationContext(), R.layout.custom_list, al);
         lv.setAdapter(aa);
-        lv.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> p1, View p2, int p3, long p4) {
-                // TODO: Implement this method
-                Intent i = new Intent(getApplicationContext(), ItemData.class);
-                items = Items.find(Items.class, "user = ?", user);
-                Items item = items.get(p3);
-                i.putExtra("Item", item);
-                i.putExtra("User", user);
-                i.putExtra("Id", item.getId());
-                i.putExtra("Flag", true);
-                i.putExtra("Signal", 1);
-                startActivity(i);
-                overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-            }
+        lv.setOnItemClickListener((p1, p2, p3, p4) -> {
+            // TODO: Implement this method
+            Intent i = new Intent(getApplicationContext(), ItemData.class);
+            items = Items.find(Items.class, "user = ?", user);
+            Items item = items.get(p3);
+            i.putExtra("Item", item);
+            i.putExtra("User", user);
+            i.putExtra("Id", item.getId());
+            i.putExtra("Flag", true);
+            i.putExtra("Signal", 1);
+            startActivity(i);
+            overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
         });
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
+            case android.R.id.home -> {
                 onBackPressed();
                 return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

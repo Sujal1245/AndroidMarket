@@ -7,15 +7,15 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
     private static final int STATIC_INTEGER_VALUE = 420;
@@ -40,22 +40,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        Drawable dr = getResources().getDrawable(R.drawable.android1);
-        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+        Drawable dr = AppCompatResources.getDrawable(this, R.drawable.android1);
+        Bitmap bitmap = null;
+        if (dr != null) {
+            bitmap = ((BitmapDrawable) dr).getBitmap();
+        }
         Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 100, 100, true));
         getSupportActionBar().setIcon(d);
 
         b1 = findViewById(R.id.mainButton1);
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                // TODO: Implement this method
-                Intent i = new Intent(getApplicationContext(), SignIn.class);
-                startActivity(i);
-                overridePendingTransition(R.anim.mainfadein, R.anim.splashfadeout);
-            }
+        b1.setOnClickListener(p1 -> {
+            // TODO: Implement this method
+            Intent i = new Intent(getApplicationContext(), SignIn.class);
+            startActivity(i);
+            overridePendingTransition(R.anim.mainfadein, R.anim.splashfadeout);
         });
         b2 = findViewById(R.id.mainButton2);
         b2.setOnClickListener(p1 -> {
@@ -97,13 +100,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case STATIC_INTEGER_VALUE: {
+            case STATIC_INTEGER_VALUE -> {
                 if (resultCode == AppCompatActivity.RESULT_OK) {
                     Snackbar snak = Snackbar.make(findViewById(R.id.mainRelativeLayout1), "Account Successfully Created!", Snackbar.LENGTH_SHORT);
                     snak.show();
                 }
             }
-            break;
         }
     }
 

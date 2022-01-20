@@ -1,31 +1,39 @@
 package com.Sujal_Industries.AndroidMarket;
 
-import android.content.*;
-import android.content.res.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import android.net.*;
-import android.os.*;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.core.widget.*;
-import androidx.appcompat.app.*;
-import androidx.appcompat.widget.*;
-import android.view.*;
-import android.widget.*;
-
-import com.bumptech.glide.*;
-import com.bumptech.glide.request.*;
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.storage.*;
-
-import java.io.*;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
-
-import com.bumptech.glide.load.engine.*;
-
-import androidx.core.content.*;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 
 public class DrawerActivity extends AppCompatActivity {
     String user;
@@ -33,7 +41,6 @@ public class DrawerActivity extends AppCompatActivity {
     Toolbar myToolbar;
     ActionBarDrawerToggle mDrawerToggle;
     DrawerLayout drawerLayout;
-    String name;
     NavigationView navigation;
     View navHeader;
     TextView name123, userName;
@@ -55,7 +62,10 @@ public class DrawerActivity extends AppCompatActivity {
         name123 = navHeader.findViewById(R.id.name);
         userName = navHeader.findViewById(R.id.user);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, myToolbar, R.string.open, R.string.close) {
             public void onDrawerClosed(View view) {
                 supportInvalidateOptionsMenu();
@@ -69,48 +79,45 @@ public class DrawerActivity extends AppCompatActivity {
         };
 
         mDrawerToggle.setDrawerIndicatorEnabled(true);
-        drawerLayout.setDrawerListener(mDrawerToggle);
+        drawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
-        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem p1) {
-                // TODO: Implement this method
-                p1.setChecked(true);
-                drawerLayout.closeDrawers();
-                int id = p1.getItemId();
-                navigation.setCheckedItem(id);
-                switch (id) {
-                    case R.id.nav_market:
-                        break;
-                    case R.id.nav_cart:
-                        Intent i1 = new Intent(getApplicationContext(), Cart123.class);
-                        i1.putExtra("User", user);
-                        startActivity(i1);
-                        overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-                        break;
-                    case R.id.nav_passbook:
-                        Intent i2 = new Intent(getApplicationContext(), Passbook.class);
-                        i2.putExtra("User", user);
-                        startActivity(i2);
-                        overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-                        break;
-                    case R.id.nav_add:
-                        Intent i3 = new Intent(getApplicationContext(), AddItem.class);
-                        i3.putExtra("UserName", user);
-                        startActivity(i3);
-                        overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-                        break;
-                    case R.id.nav_settings:
-                        Intent i4 = new Intent(getApplicationContext(), Settings.class);
-                        i4.putExtra("UserName", user);
-                        startActivity(i4);
-                        overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-                        break;
-                }
-                return true;
+        navigation.setNavigationItemSelectedListener(p1 -> {
+            // TODO: Implement this method
+            p1.setChecked(true);
+            drawerLayout.closeDrawers();
+            int id = p1.getItemId();
+            navigation.setCheckedItem(id);
+            switch (id) {
+                case R.id.nav_market:
+                    break;
+                case R.id.nav_cart:
+                    Intent i1 = new Intent(getApplicationContext(), Cart123.class);
+                    i1.putExtra("User", user);
+                    startActivity(i1);
+                    overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
+                    break;
+                case R.id.nav_passbook:
+                    Intent i2 = new Intent(getApplicationContext(), Passbook.class);
+                    i2.putExtra("User", user);
+                    startActivity(i2);
+                    overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
+                    break;
+                case R.id.nav_add:
+                    Intent i3 = new Intent(getApplicationContext(), AddItem.class);
+                    i3.putExtra("UserName", user);
+                    startActivity(i3);
+                    overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
+                    break;
+                case R.id.nav_settings:
+                    Intent i4 = new Intent(getApplicationContext(), Settings.class);
+                    i4.putExtra("UserName", user);
+                    startActivity(i4);
+                    overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
+                    break;
             }
+            return true;
         });
-        Drawable dr = getResources().getDrawable(R.drawable.shop);
+        Drawable dr = AppCompatResources.getDrawable(this, R.drawable.shop);
         Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
         Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 100, 100, true));
         getSupportActionBar().setIcon(d);
@@ -135,7 +142,7 @@ public class DrawerActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
@@ -177,8 +184,7 @@ public class DrawerActivity extends AppCompatActivity {
 
     private File loadImageFromStorage(String path) {
 
-        File f = new File(new File(path), "Profile.jpg");
-        return f;
+        return new File(new File(path), "Profile.jpg");
 
     }
 

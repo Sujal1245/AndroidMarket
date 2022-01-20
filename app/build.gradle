@@ -8,8 +8,8 @@ android {
         applicationId "com.Sujal_Industries.AndroidMarket"
         minSdkVersion 19
         targetSdkVersion 32
-        versionCode 21
-        versionName "3.0"
+        versionCode 22
+        versionName "3.1"
         multiDexEnabled true
     }
     buildTypes {
@@ -20,8 +20,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
