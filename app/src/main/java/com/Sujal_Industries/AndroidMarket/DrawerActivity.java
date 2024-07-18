@@ -62,8 +62,7 @@ public class DrawerActivity extends AppCompatActivity {
         name123 = navHeader.findViewById(R.id.name);
         userName = navHeader.findViewById(R.id.user);
         setSupportActionBar(myToolbar);
-        if(getSupportActionBar()!=null)
-        {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, myToolbar, R.string.open, R.string.close) {
@@ -87,33 +86,27 @@ public class DrawerActivity extends AppCompatActivity {
             drawerLayout.closeDrawers();
             int id = p1.getItemId();
             navigation.setCheckedItem(id);
-            switch (id) {
-                case R.id.nav_market:
-                    break;
-                case R.id.nav_cart:
-                    Intent i1 = new Intent(getApplicationContext(), Cart123.class);
-                    i1.putExtra("User", user);
-                    startActivity(i1);
-                    overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-                    break;
-                case R.id.nav_passbook:
-                    Intent i2 = new Intent(getApplicationContext(), Passbook.class);
-                    i2.putExtra("User", user);
-                    startActivity(i2);
-                    overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-                    break;
-                case R.id.nav_add:
-                    Intent i3 = new Intent(getApplicationContext(), AddItem.class);
-                    i3.putExtra("UserName", user);
-                    startActivity(i3);
-                    overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-                    break;
-                case R.id.nav_settings:
-                    Intent i4 = new Intent(getApplicationContext(), Settings.class);
-                    i4.putExtra("UserName", user);
-                    startActivity(i4);
-                    overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
-                    break;
+            if (id == R.id.nav_market) {
+            } else if (id == R.id.nav_cart) {
+                Intent i1 = new Intent(getApplicationContext(), Cart123.class);
+                i1.putExtra("User", user);
+                startActivity(i1);
+                overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
+            } else if (id == R.id.nav_passbook) {
+                Intent i2 = new Intent(getApplicationContext(), Passbook.class);
+                i2.putExtra("User", user);
+                startActivity(i2);
+                overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
+            } else if (id == R.id.nav_add) {
+                Intent i3 = new Intent(getApplicationContext(), AddItem.class);
+                i3.putExtra("UserName", user);
+                startActivity(i3);
+                overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
+            } else if (id == R.id.nav_settings) {
+                Intent i4 = new Intent(getApplicationContext(), Settings.class);
+                i4.putExtra("UserName", user);
+                startActivity(i4);
+                overridePendingTransition(R.anim.from_middle, R.anim.to_middle);
             }
             return true;
         });
